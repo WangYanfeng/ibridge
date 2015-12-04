@@ -1,0 +1,47 @@
+<div class="result page" id="page">{$page}</div>
+<table class="table table-hover table-bordered">
+	<thead>
+		<tr>
+      <th width="120">传感器编号</th>
+      <th>名称</th>
+      <th>数据</th>
+      <th>时间</th>
+      <th>温度</th>
+      <th>状态</th>
+    </tr>
+	</thead>
+    <volist name='datalist' id='item'>
+    	<tr>
+		    <td>{$item.id}</td>
+        <td>{$item.name}</td>
+        <td>{$item.value}</td>
+        <td>{$item.time}</td>
+        <td>{$item.temperature}</td>
+        <td>good</td>
+	    </tr>
+    </volist>
+</table>
+<?php
+  echo "<script>var id=$id;
+  var model='$model';</script>";
+?>
+<script>
+  $(function() {
+    $("#showDataTable a").click(function() {
+      $.ajax({
+            type: "Post",
+            url:$(this).attr('href'),    //取得a标签链接地址
+            data:{bridge_id:id,
+             sensor_model:model},
+            beforeSend:function(){
+                $("#showDataTable").text("请稍等!");
+            },
+            success:function(data){ 
+                $('#showDataTable').html(data);     //将数据重新加载到lcontent容器中
+            }
+        });
+            return false;     //使a标签失效
+        
+    });
+  })
+</script>

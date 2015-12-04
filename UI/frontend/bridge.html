@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <title>瑞通路桥健康监测系统</title>
+  <script src="/home/Tpl/public/static/js/jquery.js"></script>
+  <script src="/home/Tpl/public/static/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/home/Tpl/public/home.css">
+  <link rel="stylesheet" type="text/css" href="/home/Tpl/public/static/css/bootstrap.min.css">
+</head>
+<body>
+<div class="header">
+  <div style="padding-top:10px;">
+    <empty name="Think.session.user">
+      <script type="text/javascript">
+      window.location.href='{:U("/Index/index")}';
+      </script>
+    </empty>
+    <notempty name="Think.session.user">
+      <div align="right">
+       <a href={:U("/Index/logout")}>您好,{$_SESSION['user']['name']}! | 退出</a>
+      </div>
+    </notempty> 
+  </div>
+  <div style="margin-left:50px;">
+    <span><img width="35" height="30" src="/favicon.ico"alt="瑞通logo">瑞通路桥健康监测系统</span>
+  </div>
+</div>
+<div class="content">
+  <div class="container">
+    <div style="text-align:center;margin-top:20px;"><h1>选择监测的桥梁</h1></div>
+    <hr>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <?php
+         $i=0;
+         while ($i<$bridge_num) {
+            //桥的图片以桥的编号命名。
+          if($i%2==0) {echo "<ul class=\"thumbnails\">";}
+            echo "<li class=\"span6\">
+                    <a href=\"__APP__/Main/main/id/".$bridge_info[$i]["id"]."\" class=\"thumbnail\">
+                      <img class=\"bridge_pic_small\" data-src=\"holder.js/300*200\" src=\"".$bridge_info[$i]["picture"]."\">
+                    </a>
+                    <div class=\"bridge_title\">".$bridge_info[$i]["name"]."</div>
+                    <p>".substr($bridge_info[$i]["description"],0,360)."......</p>
+                  </li>";
+            $i++;        
+            if ($i%2==0) { echo "</ul>";}                 
+         }         
+      ?> 
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">陕西省西安市沣惠南路华晶广场A座12楼|88372201 88372202
+  <div class="footerhr">
+    <hr>
+  </div>
+  Copyrights © 2013瑞通桥梁监测系统|
+  <a target="_blank" href="http://www.miitbeian.gov.cn">陕ICP备08888888号-1</a>|陕公网安备8888888888
+</div>
+</body>
+</html>

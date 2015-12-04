@@ -1,0 +1,56 @@
+<!--传感器曲线图详情显示。异步方式加载页面-->
+<?php
+  echo "<script>var data=$data;</script>";
+?>
+<script type="text/javascript">
+	$(function() {
+		var option={
+              chart: {
+                renderTo: 'detail_sensor_chart',
+                type: 'line',
+                shadow: true,
+                marginRight:15,
+                marginBottom:40
+              },
+              title: {
+                text: '数据曲线图表',
+              },
+              xAxis:{
+                type:'datetime'
+              },
+              yAxis: {
+                title: {text: '数据'}
+              },
+              tooltip:{
+                xDateFormat:'%Y-%m-%d %H:%M:%S',
+                borderColor: 'green',
+                borderWidth:1
+              },
+              legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                borderWidth: 0
+              },
+              series:  [{
+                name: '',
+                data: []
+              }]
+        };
+        drawchart();
+        function drawchart(){       
+          for(var i=0;i<data.length;i++){
+              var time=new Array();
+              time=data[i][0].split(",");
+              data[i][0]=Date.UTC(time[0],time[1]-1,time[2],time[3],time[4],time[5],time[6]);
+            }
+          option.series[0].name="传感器"+{$sensor_id};
+        	option.series[0].data=data;
+          var chart=new Highcharts.Chart(option);
+          chart.redraw();
+        }
+
+	})
+</script>
+<div id="detail_sensor_chart" class="detail_sensor_pic">
+</div>

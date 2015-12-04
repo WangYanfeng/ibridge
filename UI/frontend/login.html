@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>XXXX桥健康监测系统</title>
+	<script src="/htdocs/js/jquery.js"></script>
+  <script src="/htdocs/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/htdocs/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/htdocs/css/bootstrap.min.css">
+</head>
+<body background="/htdocs/images/contentbg.png">
+<div class="top">
+  <div class="container" style="margin-left:40px;width:1040px;padding-top:10px;" >
+    <div class="navbar">
+      <div>
+        <a class="brand" style="width:600px" href="index.html">
+            <span>
+              <img width="40" height="35" src="/htdocs/images/favicon.ico" alt="logo">XXXX路桥智能健康监测系统
+            </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="width:85%">
+	<div class="row-fluid login">
+		<div class="span8">
+      <img src="/htdocs/images/login.jpg" style="height:330px">  
+    </div>
+		<div class="span4">
+			<div class="well well-small" style="margin-top:20px;margin-right:10px">
+				<form class="form-horizontal" method="post" action="/ibridge/api/login">
+             <div class="control-group">
+                <label class="control-label" for="name">用户名:</label>
+                <div class="controls">
+                  <input style="height:30px" type="text" name="name" placeholder="input name">
+                </div>
+             </div>
+             <div class="control-group">
+                 <label class="control-label" for="password">密码：</label>
+                 <div class="controls">
+                   <input style="height:30px" type="password" name="password" placeholder="input password">
+                 </div>
+             </div>
+             <div class="control-group">
+                 <label class="control-label" for="verify">验证码:</label>
+                 <div class="controls">
+                   <input style="height:30px" type="text" name="verify";>
+                   <img id="verifyImg" src="/public/yanzhengma.php/rand/<?php echo rand();?>" title="点击刷新验证码">
+                        <a href="javascript:refresh();">换一张</a>
+                 </div>
+             </div>
+             <div class="control-group">
+                   <div class="controls">
+                   <button type="submit" class="btn">登录</button>
+                   </div>
+             </div>
+          </form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="footer">陕西省西安市XXXXXXXXA座12楼|88XXXXXX 88XXXXXXX
+  <div class="footerhr">
+    <hr>
+  </div>
+  Copyrights © 2013XXX桥梁监测系统|
+  <a target="_blank" href="http://www.miitbeian.gov.cn">陕ICP备08888888号-1</a>|陕公网安备8888888888
+</div>
+<script>
+	function refresh(){   
+	var img = document.images['verifyImg'];
+	img.src = img.src.substring(0,img.src.lastIndexOf("/"))+"/rand/"+Math.random()*1000;
+}</script> 
+</body>
+</html>
