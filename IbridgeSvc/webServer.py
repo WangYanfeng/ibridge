@@ -1,11 +1,13 @@
 #!/usr/bin/python
 
 import web
+from action.login import login
 
-urls=('/ibridge/index','index')
+urls=(
+	'/ibridge/api/login','login',
 
-class index:  
-    def GET(self):
-    	return 'Hello Web.py!'
+)
+
 app=web.application(urls,globals())
 application=app.wsgifunc()
+
