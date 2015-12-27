@@ -2,10 +2,13 @@
 
 import web
 from action.login import login
+from action.main import main
+from action.bridge import bridge
 
 urls=(
-	'/ibridge/api/login','login',
-
+	'/ibridge/login','login',
+	'/ibridge/bridge/(.+)','bridge',
+	'/ibridge/main/(.+)','main'
 )
 
 app=web.application(urls,globals())

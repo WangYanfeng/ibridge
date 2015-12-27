@@ -25,8 +25,11 @@ class MemMgmt(object):
 	pass
 
     def get(self,key):
-	value=MemMgmt.__memClient.get(key)
-	return value
+	if key:
+	    value=MemMgmt.__memClient.get(key)
+	    return value
+	else:
+	    return None
 
     def set(self,key,value):
 	if value:
@@ -35,7 +38,11 @@ class MemMgmt(object):
 	    MemMgmt.__memClient.delete(key)
     
 if __name__=="__main__":
-    mem=MemMgmt()
-    print id(mem)
-    mem.set('name','tom')
-    print mem.get('name')
+    if len(sys.argv) == 3 and sys.argv[1] == "get":
+    	mem=MemMgmt()
+	value=mem.get(sys.argv[2])
+    	print value
+    elif len(sys.argv) == 3 and sys.argv[1] == "set":
+	mem=MemMgmt()
+    	mem.set('name','tom')
+
